@@ -7,8 +7,6 @@ import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import {
   GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
   XIcon,
 } from '@/components/SocialIcons'
 import logoAirbnb from '@/images/logos/airbnb.svg'
@@ -263,8 +261,8 @@ export default async function Home() {
             Software designer, founder, and amateur astronaut.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Spencer, a software designer and entrepreneur based in New York
-            City. I’m the founder and CEO of Planetaria, where we develop
+            I&apos;m Spencer, a software designer and entrepreneur based in New York
+            City. I&apos;m the founder and CEO of Planetaria, where we develop
             technologies that empower regular people to explore space on their
             own terms.
           </p>
@@ -272,18 +270,8 @@ export default async function Home() {
             <SocialLink href="#" aria-label="Follow on X" icon={XIcon} />
             <SocialLink
               href="#"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            />
-            <SocialLink
-              href="#"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
-            />
-            <SocialLink
-              href="#"
-              aria-label="Follow on LinkedIn"
-              icon={LinkedInIcon}
             />
           </div>
         </div>
