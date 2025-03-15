@@ -261,15 +261,15 @@ export default async function Home() {
             Software designer, founder, and amateur astronaut.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I&apos;m Spencer, a software designer and entrepreneur based in New York
+            I&apos;m Shawn, a software designer and entrepreneur based in New York
             City. I&apos;m the founder and CEO of Planetaria, where we develop
             technologies that empower regular people to explore space on their
             own terms.
           </p>
           <div className="mt-6 flex gap-6">
-            <SocialLink href="#" aria-label="Follow on X" icon={XIcon} />
+            <SocialLink href="https://x.com/super3" aria-label="Follow on X" icon={XIcon} />
             <SocialLink
-              href="#"
+              href="https://github.com/super3"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
             />

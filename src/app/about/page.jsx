@@ -34,7 +34,7 @@ function MailIcon(props) {
 export const metadata = {
   title: 'About',
   description:
-    "I&apos;m Spencer Sharp. I live in New York City, where I design the future.",
+    "I&apos;m Shawn. I live in New York City, where I design the future.",
 }
 
 export default function About() {
@@ -53,7 +53,7 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            I&apos;m Spencer Sharp. I live in New York City, where I design the
+            I&apos;m Shawn Wilkinson. I live in New York City, where I design the
             future.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
@@ -87,18 +87,18 @@ export default function About() {
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="#" icon={XIcon}>
+            <SocialLink href="https://x.com/super3" icon={XIcon}>
               Follow on X
             </SocialLink>
-            <SocialLink href="#" icon={GitHubIcon} className="mt-4">
+            <SocialLink href="https://github.com/super3" icon={GitHubIcon} className="mt-4">
               Follow on GitHub
             </SocialLink>
             <SocialLink
-              href="mailto:spencer@planetaria.tech"
+              href="mailto:shawn@planetaria.tech"
               icon={MailIcon}
               className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
             >
-              spencer@planetaria.tech
+              shawn@planetaria.tech
             </SocialLink>
           </ul>
         </div>
