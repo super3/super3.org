@@ -122,35 +122,28 @@ function Role({ role }) {
 function Resume() {
   let resume = [
     {
-      company: 'Planetaria',
-      title: 'CEO',
+      company: 'Stealth',
+      title: 'Founder, CEO',
       logo: logoPlanetaria,
-      start: '2019',
+      start: '2024',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear().toString(),
       },
     },
     {
-      company: 'Airbnb',
-      title: 'Product Designer',
-      logo: logoAirbnb,
-      start: '2014',
-      end: '2019',
-    },
-    {
-      company: 'Facebook',
-      title: 'iOS Software Engineer',
+      company: 'Prodia Labs',
+      title: 'Founder, CEO',
       logo: logoFacebook,
-      start: '2011',
-      end: '2014',
+      start: '2022',
+      end: '2024',
     },
     {
-      company: 'Starbucks',
-      title: 'Shift Supervisor',
+      company: 'Storj Labs',
+      title: 'Founder, CEO, CTO, CSO',
       logo: logoStarbucks,
-      start: '2008',
-      end: '2011',
+      start: '2014',
+      end: '2022',
     },
   ]
 
@@ -176,7 +169,7 @@ function Resume() {
 export default async function Home() {
   return (
     <Container className="mt-9">
-      <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-2 lg:gap-x-16 lg:items-start">
+      <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-2 lg:gap-x-16">
         <div>
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
             Software designer, founder, and amateur astronaut.
@@ -197,7 +190,7 @@ export default async function Home() {
           </div>
         </div>
         
-        <div className="lg:pl-8">
+        <div className="lg:pl-8 lg:-mt-6">
           <Resume />
         </div>
       </div>
