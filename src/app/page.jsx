@@ -94,7 +94,19 @@ function Role({ role, isActive }) {
   let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full relative">
+      {/* Status Badge - Top Right */}
+      <div className="absolute top-0 right-0">
+        <span className={clsx(
+          "px-3 py-1 text-sm font-medium rounded-full",
+          isActive 
+            ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
+            : "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
+        )}>
+          {isActive ? 'Active' : 'Completed'}
+        </span>
+      </div>
+
       {/* Card Header with Logo and Company */}
       <div className="flex items-center gap-3 mb-3">
         <div className="relative flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-zinc-50 dark:bg-zinc-800">
@@ -107,7 +119,7 @@ function Role({ role, isActive }) {
             unoptimized 
           />
         </div>
-        <div className="flex-1 flex flex-col justify-center gap-1">
+        <div className="flex-1 flex flex-col justify-center gap-1 pr-16">
           <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-none">
             {role.company}
           </h4>
@@ -124,17 +136,24 @@ function Role({ role, isActive }) {
         </p>
       )}
 
-      {/* Footer with Status and Duration */}
+      {/* Footer with Website and Duration */}
       <div className="mt-auto pt-3 border-t border-zinc-100 dark:border-zinc-800">
         <div className="flex items-center justify-between">
-          <span className={clsx(
-            "px-2 py-0.5 text-xs font-medium rounded-full",
-            isActive 
-              ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
-              : "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
-          )}>
-            {isActive ? 'Active' : 'Completed'}
-          </span>
+          {role.website ? (
+            <Link 
+              href={role.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+            >
+              <span>Visit website</span>
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </Link>
+          ) : (
+            <span></span>
+          )}
           <span className="flex items-center gap-1 text-xs text-zinc-400 dark:text-zinc-500">
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -153,9 +172,34 @@ function Resume() {
       {
         company: 'Stealth',
         title: 'Founder, CEO',
-        description: '',
+        description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse.',
         logo: logoPlanetaria,
-        start: '2024',
+        website: '',
+        start: '2025',
+        end: {
+          label: 'Present',
+          dateTime: new Date().getFullYear().toString(),
+        },
+      },
+      {
+        company: 'Stealth',
+        title: 'Founder, CEO',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.',
+        logo: logoPlanetaria,
+        website: '',
+        start: '2025',
+        end: {
+          label: 'Present',
+          dateTime: new Date().getFullYear().toString(),
+        },
+      },
+      {
+        company: 'Stealth',
+        title: 'Founder, CEO',
+        description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
+        logo: logoPlanetaria,
+        website: '',
+        start: '2025',
         end: {
           label: 'Present',
           dateTime: new Date().getFullYear().toString(),
@@ -166,16 +210,18 @@ function Resume() {
       {
         company: 'Prodia Labs',
         title: 'Founder, CEO',
-        description: 'APIs That Power the Next Generation of Creative Tools',
+        description: 'APIs That Power the Next Generation of Creative Tools for AI Images and Video.',
         logo: logoProdia,
+        website: 'https://prodia.com',
         start: '2022',
         end: '2024',
       },
       {
         company: 'Storj Labs',
         title: 'Founder, CEO, CTO, CSO',
-        description: 'Blazing fast global access to S3-compatible object storage and compute at the cost of a single region.',
+        description: 'Blazing fast global S3-compatible object storage and compute at the cost of a single region.',
         logo: logoStorj,
+        website: 'https://www.storj.io',
         start: '2014',
         end: '2022',
       },
@@ -184,9 +230,9 @@ function Resume() {
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-6">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Work Experience</span>
+      <h2 className="flex items-center gap-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-6">
+        <BriefcaseIcon className="h-5 w-5 flex-none" />
+        Work Experience
       </h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -196,7 +242,7 @@ function Resume() {
               CURRENT WORK
             </h3>
             <span className="text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-200 dark:bg-zinc-700 px-2 py-1 rounded">
-              1
+              {resume.current.length}
             </span>
           </div>
           <div className="space-y-3">
@@ -214,7 +260,7 @@ function Resume() {
               PREVIOUS WORK
             </h3>
             <span className="text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-200 dark:bg-zinc-700 px-2 py-1 rounded">
-              2
+              {resume.previous.length}
             </span>
           </div>
           <div className="space-y-3">
@@ -234,22 +280,24 @@ export default async function Home() {
   return (
     <Container className="mt-9">
       <div>
-        <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-          Software designer, founder, and amateur astronaut.
-        </h1>
-        <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-          I&apos;m Shawn, a software designer and entrepreneur based in New York
-          City. I&apos;m the founder and CEO of Planetaria, where we develop
-          technologies that empower regular people to explore space on their
-          own terms.
-        </p>
-        <div className="mt-6 flex gap-6">
-          <SocialLink href="https://x.com/super3" aria-label="Follow on X" icon={XIcon} />
-          <SocialLink
-            href="https://github.com/super3"
-            aria-label="Follow on GitHub"
-            icon={GitHubIcon}
-          />
+        <div className="text-center max-w-3xl mx-auto">
+          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+            Decentralization pioneer, serial founder, and storage innovator.
+          </h1>
+          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+            I&apos;m Shawn, a serial entrepreneur focused on building the future of decentralized 
+            infrastructure. From revolutionizing cloud storage at Storj to democratizing AI 
+            creative tools at Prodia, I&apos;m passionate about making powerful technology 
+            accessible to everyone.
+          </p>
+          <div className="mt-6 flex gap-6 justify-center">
+            <SocialLink href="https://x.com/super3" aria-label="Follow on X" icon={XIcon} />
+            <SocialLink
+              href="https://github.com/super3"
+              aria-label="Follow on GitHub"
+              icon={GitHubIcon}
+            />
+          </div>
         </div>
         
         <div className="mt-12">
