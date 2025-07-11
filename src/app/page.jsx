@@ -94,15 +94,15 @@ function Role({ role, isActive }) {
   return (
     <div className="flex flex-col h-full">
       {/* Card Header with Logo and Company */}
-      <div className="flex items-start gap-3 mb-3">
+      <div className="flex items-center gap-3 mb-3">
         <div className="relative flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-zinc-50 dark:bg-zinc-800">
           <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
         </div>
-        <div className="flex-1">
-          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <div className="flex-1 flex flex-col justify-center gap-1">
+          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-none">
             {role.company}
           </h4>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-none">
             {role.title}
           </p>
         </div>
