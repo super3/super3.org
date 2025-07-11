@@ -204,7 +204,7 @@ function Resume() {
       {
         company: 'Prodia Labs',
         title: 'Founder, CEO',
-        description: 'APIs That Power the Next Generation of Creative Tools for AI Images and Video.',
+        description: 'APIs that power the next generation of creative tools for AI images and video.',
         logo: logoProdia,
         website: 'https://prodia.com',
         start: '2022',
