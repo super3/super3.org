@@ -15,6 +15,8 @@ import logoPlanetaria from '@/images/logos/planetaria.svg'
 import logoStarbucks from '@/images/logos/starbucks.svg'
 import logoStorj from '@/images/logos/storj-favicon.png'
 import logoProdia from '@/images/logos/prodia.png'
+import logoDashban from '@/images/logos/dashban.svg'
+import logoBitworld from '@/images/logos/bitworld.svg'
 import { formatDate } from '@/lib/formatDate'
 
 function MailIcon(props) {
@@ -110,14 +112,18 @@ function Role({ role, isActive }) {
       {/* Card Header with Logo and Company */}
       <div className="flex items-center gap-3 mb-3">
         <div className="relative flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-zinc-50 dark:bg-zinc-800">
-          <Image 
-            src={role.logo} 
-            alt="" 
-            className={clsx(
-              role.company === 'Prodia Labs' ? "h-5 w-5 dark:invert dark:brightness-200" : "h-7 w-7"
-            )} 
-            unoptimized 
-          />
+          {role.company === 'BitWorld.gg' ? (
+            <span className="text-2xl">🌍</span>
+          ) : (
+            <Image 
+              src={role.logo} 
+              alt="" 
+              className={clsx(
+                role.company === 'Prodia Labs' ? "h-5 w-5 dark:invert dark:brightness-200" : "h-7 w-7"
+              )} 
+              unoptimized 
+            />
+          )}
         </div>
         <div className="flex-1 flex flex-col justify-center gap-1 pr-16">
           <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-none">
@@ -170,11 +176,11 @@ function Resume() {
   let resume = {
     current: [
       {
-        company: 'Stealth',
+        company: 'Dashban',
         title: 'Founder, CEO',
-        description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse.',
-        logo: logoPlanetaria,
-        website: '',
+        description: 'Combines kanban project management with realtime status dashboards in one clean interface.',
+        logo: logoDashban,
+        website: 'https://dashban.com',
         start: '2025',
         end: {
           label: 'Present',
@@ -182,23 +188,11 @@ function Resume() {
         },
       },
       {
-        company: 'Stealth',
+        company: 'BitWorld.gg',
         title: 'Founder, CEO',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.',
-        logo: logoPlanetaria,
-        website: '',
-        start: '2025',
-        end: {
-          label: 'Present',
-          dateTime: new Date().getFullYear().toString(),
-        },
-      },
-      {
-        company: 'Stealth',
-        title: 'Founder, CEO',
-        description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
-        logo: logoPlanetaria,
-        website: '',
+        description: 'A pixel life simulation where you live, explore, and make friends in a growing city.',
+        logo: logoBitworld,
+        website: 'https://bitworld.gg',
         start: '2025',
         end: {
           label: 'Present',
