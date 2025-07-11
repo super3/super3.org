@@ -13,6 +13,8 @@ import logoAirbnb from '@/images/logos/airbnb.svg'
 import logoFacebook from '@/images/logos/facebook.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
 import logoStarbucks from '@/images/logos/starbucks.svg'
+import logoStorj from '@/images/logos/storj-favicon.png'
+import logoProdia from '@/images/logos/prodia.png'
 import { formatDate } from '@/lib/formatDate'
 
 function MailIcon(props) {
@@ -96,7 +98,14 @@ function Role({ role, isActive }) {
       {/* Card Header with Logo and Company */}
       <div className="flex items-center gap-3 mb-3">
         <div className="relative flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-zinc-50 dark:bg-zinc-800">
-          <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+          <Image 
+            src={role.logo} 
+            alt="" 
+            className={clsx(
+              role.company === 'Prodia Labs' ? "h-5 w-5 dark:invert dark:brightness-200" : "h-7 w-7"
+            )} 
+            unoptimized 
+          />
         </div>
         <div className="flex-1 flex flex-col justify-center gap-1">
           <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-none">
@@ -158,7 +167,7 @@ function Resume() {
         company: 'Prodia Labs',
         title: 'Founder, CEO',
         description: 'APIs That Power the Next Generation of Creative Tools',
-        logo: logoFacebook,
+        logo: logoProdia,
         start: '2022',
         end: '2024',
       },
@@ -166,7 +175,7 @@ function Resume() {
         company: 'Storj Labs',
         title: 'Founder, CEO, CTO, CSO',
         description: 'Blazing fast global access to S3-compatible object storage and compute at the cost of a single region.',
-        logo: logoStarbucks,
+        logo: logoStorj,
         start: '2014',
         end: '2022',
       },
