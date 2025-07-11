@@ -82,7 +82,7 @@ function SocialLink({ icon: Icon, ...props }) {
   )
 }
 
-function Role({ role }) {
+function Role({ role, isActive }) {
   let startLabel =
     typeof role.start === 'string' ? role.start : role.start.label
   let startDate =
@@ -92,76 +92,131 @@ function Role({ role }) {
   let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
 
   return (
-    <li className="flex gap-4">
-      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full ring-1 shadow-md shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+    <div className="flex flex-col h-full">
+      {/* Card Header with Logo and Company */}
+      <div className="flex items-start gap-3 mb-3">
+        <div className="relative flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-zinc-50 dark:bg-zinc-800">
+          <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+        </div>
+        <div className="flex-1">
+          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+            {role.company}
+          </h4>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+            {role.title}
+          </p>
+        </div>
       </div>
-      <dl className="flex flex-auto flex-wrap gap-x-2">
-        <dt className="sr-only">Company</dt>
-        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          {role.company}
-        </dd>
-        <dt className="sr-only">Role</dt>
-        <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-          {role.title}
-        </dd>
-        <dt className="sr-only">Date</dt>
-        <dd
-          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-          aria-label={`${startLabel} until ${endLabel}`}
-        >
-          <time dateTime={startDate}>{startLabel}</time>{' '}
-          <span aria-hidden="true">—</span>{' '}
-          <time dateTime={endDate}>{endLabel}</time>
-        </dd>
-      </dl>
-    </li>
+
+      {/* Description */}
+      {role.description && (
+        <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex-1 leading-relaxed">
+          {role.description}
+        </p>
+      )}
+
+      {/* Footer with Status and Duration */}
+      <div className="mt-auto pt-3 border-t border-zinc-100 dark:border-zinc-800">
+        <div className="flex items-center justify-between">
+          <span className={clsx(
+            "px-2 py-0.5 text-xs font-medium rounded-full",
+            isActive 
+              ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
+              : "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
+          )}>
+            {isActive ? 'Active' : 'Completed'}
+          </span>
+          <span className="flex items-center gap-1 text-xs text-zinc-400 dark:text-zinc-500">
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {startLabel} - {endLabel}
+          </span>
+        </div>
+      </div>
+    </div>
   )
 }
 
 function Resume() {
-  let resume = [
-    {
-      company: 'Stealth',
-      title: 'Founder, CEO',
-      logo: logoPlanetaria,
-      start: '2024',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear().toString(),
+  let resume = {
+    current: [
+      {
+        company: 'Stealth',
+        title: 'Founder, CEO',
+        description: '',
+        logo: logoPlanetaria,
+        start: '2024',
+        end: {
+          label: 'Present',
+          dateTime: new Date().getFullYear().toString(),
+        },
       },
-    },
-    {
-      company: 'Prodia Labs',
-      title: 'Founder, CEO',
-      logo: logoFacebook,
-      start: '2022',
-      end: '2024',
-    },
-    {
-      company: 'Storj Labs',
-      title: 'Founder, CEO, CTO, CSO',
-      logo: logoStarbucks,
-      start: '2014',
-      end: '2022',
-    },
-  ]
+    ],
+    previous: [
+      {
+        company: 'Prodia Labs',
+        title: 'Founder, CEO',
+        description: 'APIs That Power the Next Generation of Creative Tools',
+        logo: logoFacebook,
+        start: '2022',
+        end: '2024',
+      },
+      {
+        company: 'Storj Labs',
+        title: 'Founder, CEO, CTO, CSO',
+        description: 'Blazing fast global access to S3-compatible object storage and compute at the cost of a single region.',
+        logo: logoStarbucks,
+        start: '2014',
+        end: '2022',
+      },
+    ],
+  }
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-6">
         <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Work</span>
+        <span className="ml-3">Work Experience</span>
       </h2>
-      <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <Role key={roleIndex} role={role} />
-        ))}
-      </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
-        Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-zinc-50/50 dark:bg-zinc-800/30 rounded-lg p-4">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+              CURRENT WORK
+            </h3>
+            <span className="text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-200 dark:bg-zinc-700 px-2 py-1 rounded">
+              1
+            </span>
+          </div>
+          <div className="space-y-3">
+            {resume.current.map((role, roleIndex) => (
+              <div key={roleIndex} className="bg-white dark:bg-zinc-900 rounded-md p-4 shadow-sm border border-zinc-200 dark:border-zinc-700 hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer">
+                <Role role={role} isActive={true} />
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="bg-zinc-50/50 dark:bg-zinc-800/30 rounded-lg p-4">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+              PREVIOUS WORK
+            </h3>
+            <span className="text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-200 dark:bg-zinc-700 px-2 py-1 rounded">
+              2
+            </span>
+          </div>
+          <div className="space-y-3">
+            {resume.previous.map((role, roleIndex) => (
+              <div key={roleIndex} className="bg-white dark:bg-zinc-900 rounded-md p-4 shadow-sm border border-zinc-200 dark:border-zinc-700 hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer">
+                <Role role={role} isActive={false} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
@@ -169,28 +224,26 @@ function Resume() {
 export default async function Home() {
   return (
     <Container className="mt-9">
-      <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-2 lg:gap-x-16">
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Software designer, founder, and amateur astronaut.
-          </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I&apos;m Shawn, a software designer and entrepreneur based in New York
-            City. I&apos;m the founder and CEO of Planetaria, where we develop
-            technologies that empower regular people to explore space on their
-            own terms.
-          </p>
-          <div className="mt-6 flex gap-6">
-            <SocialLink href="https://x.com/super3" aria-label="Follow on X" icon={XIcon} />
-            <SocialLink
-              href="https://github.com/super3"
-              aria-label="Follow on GitHub"
-              icon={GitHubIcon}
-            />
-          </div>
+      <div>
+        <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+          Software designer, founder, and amateur astronaut.
+        </h1>
+        <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+          I&apos;m Shawn, a software designer and entrepreneur based in New York
+          City. I&apos;m the founder and CEO of Planetaria, where we develop
+          technologies that empower regular people to explore space on their
+          own terms.
+        </p>
+        <div className="mt-6 flex gap-6">
+          <SocialLink href="https://x.com/super3" aria-label="Follow on X" icon={XIcon} />
+          <SocialLink
+            href="https://github.com/super3"
+            aria-label="Follow on GitHub"
+            icon={GitHubIcon}
+          />
         </div>
         
-        <div className="lg:pl-8 lg:-mt-6">
+        <div className="mt-12">
           <Resume />
         </div>
       </div>
