@@ -36,6 +36,9 @@ jobs:
         env:
           NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
 
+      - name: Add 404 page for GitHub Pages
+        run: cp ./out/index.html ./out/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/super3.org',
+  basePath: process.env.NODE_ENV === 'production' ? '/super3.org' : '',
   images: {
     unoptimized: true,
   },
