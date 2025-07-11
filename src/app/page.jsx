@@ -177,7 +177,7 @@ function Resume() {
     current: [
       {
         company: 'Dashban',
-        title: 'Founder, CEO',
+        title: 'Solopreneur',
         description: 'Combines kanban project management with realtime status dashboards in one clean interface.',
         logo: logoDashban,
         website: 'https://dashban.com',
@@ -189,7 +189,7 @@ function Resume() {
       },
       {
         company: 'BitWorld.gg',
-        title: 'Founder, CEO',
+        title: 'Solopreneur',
         description: 'A pixel life simulation where you live, explore, and make friends in a growing city.',
         logo: logoBitworld,
         website: 'https://bitworld.gg',
